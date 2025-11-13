@@ -1,0 +1,358 @@
+=================================================================================
+                    NLP PROJECT - TEAM CONTRIBUTIONS
+=================================================================================
+                Tamil News Classification System
+                     Category & Sentiment Analysis
+=================================================================================
+
+PROJECT TEAM:
+1. Hari Ragav S
+2. Muthuraja S
+3. Sunjayy Madev P
+
+=================================================================================
+                        INDIVIDUAL CONTRIBUTIONS
+=================================================================================
+
+-------------------------------------------------------------------------------
+1. HARI RAGAV S
+-------------------------------------------------------------------------------
+
+PRIMARY RESPONSIBILITIES:
+✓ Web Scraping & Data Collection
+✓ Resource Preparation
+✓ Model Development (Category Classification)
+✓ Documentation
+
+DETAILED WORK:
+
+A. Data Collection & Preparation:
+   - Web scraping of Tamil news headlines (jointly with Muthuraja S)
+   - Collected headlines from Tamil news websites
+   - Data cleaning and initial formatting
+   - Prepared stopwords.txt resource file (jointly with Muthuraja S)
+
+B. Data Annotation:
+   - Manual sentiment annotation of ~1,400 headlines
+   - Contributed to building the sentiment-labeled dataset
+   - Quality checking of annotated data
+
+C. Preprocessing:
+   - Worked on preProcessing.ipynb
+   - Implemented Tamil text cleaning functions
+   - Tested and validated preprocessing pipeline
+   - Contributed to tokenization logic
+
+D. Model Development & Training:
+   - Developed tf-idf.ipynb (Naive Bayes implementation)
+   - Trained Naive Bayes models for category classification
+   - Implemented TF-IDF vectorization with scikit-learn
+   - Model evaluation and performance analysis
+
+E. Advanced Modeling:
+   - Worked on vectorization_and_model.ipynb
+   - Implemented Linear SVM for category classification
+   - Model comparison and analysis
+   - Saved trained models and vectorizers
+
+F. Documentation & Reporting:
+   - Contributed to README.md documentation
+   - Prepared model evaluation reports
+   - Created category classification reports (JSON format)
+
+FILES CREATED/MODIFIED:
+   - web_scrape.py (jointly)
+   - resources/stopwords.txt (jointly)
+   - preProcessing.ipynb (jointly)
+   - tf-idf.ipynb
+   - vectorization_and_model.ipynb (category models)
+   - models/category_naive_bayes.pkl
+   - models/category_svm.pkl
+   - reports/category_naive_bayes_report.json
+   - reports/category_svm_report.json
+
+-------------------------------------------------------------------------------
+2. MUTHURAJA S
+-------------------------------------------------------------------------------
+
+PRIMARY RESPONSIBILITIES:
+✓ Web Scraping & Data Collection
+✓ Resource Preparation
+✓ Model Development (Sentiment Classification)
+✓ Testing & Validation
+
+DETAILED WORK:
+
+A. Data Collection & Preparation:
+   - Web scraping of Tamil news headlines (jointly with Hari Ragav S)
+   - Scraped headlines from multiple Tamil news sources
+   - Data extraction and initial processing
+   - Prepared stopwords.txt resource file (jointly with Hari Ragav S)
+
+B. Data Annotation:
+   - Manual sentiment annotation of ~1,400 headlines
+   - Labeled data as Positive, Negative, or Neutral
+   - Contributed to sentiment dataset creation
+   - Cross-validation of annotations
+
+C. Preprocessing:
+   - Worked on preProcessing.ipynb
+   - Implemented Tamil-specific preprocessing functions
+   - Handled special Tamil characters and encoding
+   - Contributed to suffix removal logic
+
+D. Model Development & Training:
+   - Developed tf-idf.ipynb (sentiment models)
+   - Trained Naive Bayes models for sentiment classification
+   - Implemented sentiment-specific TF-IDF features
+   - Model testing and validation
+
+E. Advanced Modeling:
+   - Worked on vectorization_and_model.ipynb
+   - Implemented Logistic Regression for sentiment classification
+   - Hyperparameter tuning and optimization
+   - Model performance comparison
+
+F. Testing & Quality Assurance:
+   - Tested all trained models
+   - Validated prediction accuracy
+   - Created test cases for edge scenarios
+   - Ensured model robustness
+
+FILES CREATED/MODIFIED:
+   - web_scrape.py (jointly)
+   - resources/stopwords.txt (jointly)
+   - preProcessing.ipynb (jointly)
+   - tf-idf.ipynb (sentiment models)
+   - vectorization_and_model.ipynb (sentiment models)
+   - models/sentiment_naive_bayes.pkl
+   - models/sentiment_logistic.pkl
+   - reports/sentiment_naive_bayes_report.json
+   - reports/sentiment_logistic_report.json
+
+-------------------------------------------------------------------------------
+3. SUNJAYY MADEV P
+-------------------------------------------------------------------------------
+
+PRIMARY RESPONSIBILITIES:
+✓ Dataset Balancing & Augmentation
+✓ Resource Collection
+✓ N-gram Implementation
+✓ Prediction System Development
+
+DETAILED WORK:
+
+A. Dataset Balancing & Preparation:
+   - Performed dataset balancing after web scraping
+   - Handled class imbalance in category distribution
+   - Ensured representative samples across all categories
+   - Data quality control and validation
+   - Collected and prepared suffixes.csv resource file
+
+B. Data Annotation:
+   - Manual sentiment annotation of ~1,400 headlines
+   - Contributed to sentiment labeling
+   - Annotation quality assurance
+   - Dataset finalization
+
+C. Preprocessing & Resources:
+   - Worked on preProcessing.ipynb
+   - Collected Tamil suffixes for morphological analysis
+   - Created resources/suffixes.csv with Tamil grammatical suffixes
+   - Implemented suffix removal functionality
+   - Contributed to preprocessing pipeline optimization
+
+D. N-gram Implementation:
+   - Developed tf-idf_n-gram.ipynb
+   - Implemented bigram and unigram feature extraction
+   - N-gram tokenization for Tamil text
+   - Trained N-gram based Naive Bayes models
+   - Performance comparison: unigram vs n-gram
+
+E. Advanced N-gram Modeling:
+   - Developed vectorization_and_model_n-gram.ipynb
+   - Implemented TF-IDF from scratch with n-gram support
+   - Manual Naive Bayes implementation with n-grams
+   - Trained SVM and Logistic Regression with n-gram features
+   - Model evaluation with enhanced features
+
+F. Prediction System Development:
+   - Developed predict_headline.ipynb
+   - Created comprehensive multi-model prediction system
+   - Implemented Tamil text preprocessing for new inputs
+   - Integrated all 6 trained models (3 category + 3 sentiment)
+   - Single and batch prediction functionality
+   - CSV export for batch predictions
+   - Model accuracy display system
+
+G. Documentation & Integration:
+   - Updated README.md with prediction system details
+   - Documented model performance results
+   - Created usage examples and guidelines
+   - Final project integration and testing
+
+FILES CREATED/MODIFIED:
+   - dataset/dataset_with_sentiment.csv (balancing)
+   - resources/suffixes.csv
+   - preProcessing.ipynb (jointly)
+   - tf-idf_n-gram.ipynb
+   - vectorization_and_model_n-gram.ipynb
+   - predict_headline.ipynb
+   - models/category_logistic.pkl
+   - models/sentiment_svm.pkl
+   - models/category_vectorizer.pkl
+   - models/sentiment_vectorizer.pkl
+   - reports/category_logistic_report.json
+   - reports/sentiment_svm_report.json
+   - output/batch_predictions.csv
+   - README.md (final updates)
+
+=================================================================================
+                        SHARED CONTRIBUTIONS
+=================================================================================
+
+ALL THREE MEMBERS JOINTLY CONTRIBUTED TO:
+
+1. Data Annotation:
+   - Each member annotated ~1,400 headlines manually
+   - Total: ~4,200 annotated headlines
+   - Sentiment labels: Positive, Negative, Neutral
+   - Quality assurance and cross-checking
+
+2. Preprocessing Pipeline:
+   - preProcessing.ipynb development
+   - Tamil text cleaning and tokenization
+   - Stopword removal implementation
+   - Suffix removal implementation
+   - Testing and validation
+
+3. Resource Preparation:
+   - resources/positive_words.txt
+   - resources/negative_words.txt
+   - resources/negation_words.txt
+   - resources/intensity_words.txt
+
+4. Model Evaluation:
+   - Performance testing of all models
+   - Confusion matrix analysis
+   - F1-score and accuracy calculations
+   - Model comparison and selection
+
+5. Documentation:
+   - README.md preparation
+   - Code documentation and comments
+   - Report generation (JSON format)
+   - Usage examples and guidelines
+
+6. Project Integration:
+   - Model persistence (pickle files)
+   - Directory structure organization
+   - File naming conventions
+   - Version control and coordination
+
+=================================================================================
+                        PROJECT DELIVERABLES
+=================================================================================
+
+NOTEBOOKS (7 Total):
+✓ preProcessing.ipynb              - Data preprocessing pipeline
+✓ tf-idf.ipynb                     - Naive Bayes with TF-IDF
+✓ tf-idf_n-gram.ipynb             - N-gram Naive Bayes
+✓ vectorization_and_model.ipynb    - All models (unigram)
+✓ vectorization_and_model_n-gram.ipynb - All models (n-gram)
+✓ predict_headline.ipynb           - Multi-model prediction system
+✓ web_scrape.py                    - Web scraping utility
+
+TRAINED MODELS (10 Files):
+✓ category_naive_bayes.pkl         - Naive Bayes (Category)
+✓ category_svm.pkl                 - Linear SVM (Category)
+✓ category_logistic.pkl            - Logistic Regression (Category)
+✓ category_model.pkl               - Best category model
+✓ category_vectorizer.pkl          - Category TF-IDF vectorizer
+✓ sentiment_naive_bayes.pkl        - Naive Bayes (Sentiment)
+✓ sentiment_svm.pkl                - Linear SVM (Sentiment)
+✓ sentiment_logistic.pkl           - Logistic Regression (Sentiment)
+✓ sentiment_model.pkl              - Best sentiment model
+✓ sentiment_vectorizer.pkl         - Sentiment TF-IDF vectorizer
+
+DATASETS:
+✓ dataset/data.csv                 - Original scraped data
+✓ dataset/dataset_with_sentiment.csv - Balanced data with sentiment
+✓ output/processed_data.csv        - Preprocessed category data
+✓ output/processed_sentiment_data.csv - Preprocessed sentiment data
+✓ output/final_dataset.csv         - Final combined dataset
+
+REPORTS (6 Files):
+✓ category_naive_bayes_report.json
+✓ category_svm_report.json
+✓ category_logistic_report.json
+✓ sentiment_naive_bayes_report.json
+✓ sentiment_svm_report.json
+✓ sentiment_logistic_report.json
+
+RESOURCES (6 Files):
+✓ stopwords.txt                    - Tamil stopwords
+✓ suffixes.csv                     - Tamil grammatical suffixes
+✓ positive_words.txt               - Positive sentiment words
+✓ negative_words.txt               - Negative sentiment words
+✓ negation_words.txt               - Negation words
+✓ intensity_words.txt              - Intensity modifiers
+
+=================================================================================
+                        MODEL PERFORMANCE SUMMARY
+=================================================================================
+
+CATEGORY CLASSIFICATION:
+   Model                    Test Accuracy    F1-Score    Developer
+   ---------------------------------------------------------------------
+   Naive Bayes             64.55%           0.6390      Hari Ragav S
+   Linear SVM              66.21%           0.6570      Hari Ragav S
+   Logistic Regression     65.20%           0.6512      Sunjayy Madev P
+
+SENTIMENT CLASSIFICATION:
+   Model                    Test Accuracy    F1-Score    Developer
+   ---------------------------------------------------------------------
+   Naive Bayes             65.25%           0.6507      Muthuraja S
+   Linear SVM              67.19%           0.6613      Sunjayy Madev P
+   Logistic Regression     68.40%           0.6571      Muthuraja S
+
+BEST MODELS:
+   ✓ Category Classification: Linear SVM (66.21%)
+   ✓ Sentiment Classification: Logistic Regression (68.40%)
+
+
+                        PROJECT TIMELINE
+=================================================================================
+
+Phase 1: Data Collection (Hari Ragav S, Muthuraja S)
+   - Web scraping implementation
+   - Initial data collection
+
+Phase 2: Data Balancing & Annotation (All Members)
+   - Dataset balancing (Sunjayy Madev P)
+   - Manual sentiment annotation (~1,400 each)
+
+Phase 3: Resource Preparation (All Members)
+   - Stopwords collection (Hari Ragav S, Muthuraja S)
+   - Suffixes collection (Sunjayy Madev P)
+   - Sentiment word lists (All Members)
+
+Phase 4: Preprocessing (All Members)
+   - Tamil text cleaning pipeline
+   - Tokenization and normalization
+
+Phase 5: Model Development (Distributed)
+   - Naive Bayes models (Hari Ragav S, Muthuraja S)
+   - SVM models (Hari Ragav S, Sunjayy Madev P)
+   - Logistic Regression (Muthuraja S, Sunjayy Madev P)
+   - N-gram implementation (Sunjayy Madev P)
+
+Phase 6: Prediction System (Sunjayy Madev P)
+   - Multi-model prediction notebook
+   - Integration and testing
+
+Phase 7: Documentation & Finalization (All Members)
+   - README and reports
+   - Final testing and validation
+
+

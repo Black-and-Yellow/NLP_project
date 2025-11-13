@@ -26,12 +26,13 @@ The project includes Tamil-specific preprocessing, feature extraction, model tra
 
 ```
 NLP-PROJECT/
-├── README.md                          # This file
+├── README.md                          # This filesee 
 ├── tf-idf.ipynb                       # Unigram TF-IDF with Naive Bayes
 ├── tf-idf_n-gram.ipynb                # N-gram TF-IDF with Naive Bayes
 ├── preProcessing.ipynb                # Data preprocessing and cleaning
-├── vectorization_and_model.ipynb      # Original vectorization notebook
-├── vectorization_and_model_n-gram.ipynb # Original n-gram vectorization
+├── vectorization_and_model.ipynb      # TF-IDF from scratch (unigrams) + All models
+├── vectorization_and_model_n-gram.ipynb # TF-IDF from scratch (n-grams) + All models
+├── predict_headline.ipynb             # 🆕 Prediction system for new headlines
 ├── web_scrape.py                      # Web scraping utility
 ├── data/                              # Raw data directory
 ├── dataset/                           # Dataset files
@@ -133,6 +134,42 @@ This notebook extends the unigram approach with n-gram features using only Naive
 - TF-IDF Vectorizers: `category_vectorizer.pkl`, `sentiment_vectorizer.pkl`
 - Evaluation Reports: JSON files with metrics and classification reports
 
+### 3. predict_headline.ipynb
+
+**🆕 Multi-Model Prediction System for New Headlines**
+
+This notebook provides a complete prediction system for classifying new Tamil news headlines:
+
+- Loads ALL trained models (Naive Bayes, SVM, Logistic Regression)
+- Tamil text preprocessing pipeline
+- TF-IDF vectorization using saved vectorizers
+- Dual classification: Category AND Sentiment
+- Shows actual model accuracies from training
+- Single and batch prediction modes
+
+**Key Features:**
+1. **Single Prediction**: Classify one headline at a time
+2. **Batch Prediction**: Process multiple headlines and save to CSV
+3. **Model Performance Display**: Shows accuracy and F1-score for each model
+4. **Complete Preprocessing**: Same pipeline used during training
+5. **All 6 Models**: Uses all trained models for comprehensive predictions
+
+**Usage Examples:**
+```python
+# Single prediction
+predict_headline("உங்கள் தமிழ் செய்தி தலைப்பு")
+
+# Batch prediction
+headlines = ["தலைப்பு 1", "தலைப்பு 2", "தலைப்பு 3"]
+results = predict_batch(headlines, save_to_csv=True)
+```
+
+**Output Format:**
+- Category predictions from 3 models (Naive Bayes, SVM, Logistic Regression)
+- Sentiment predictions from 3 models (Naive Bayes, SVM, Logistic Regression)
+- Model accuracy and F1-score for each prediction
+- CSV export for batch predictions
+
 ## Data Description
 
 ### Input Data
@@ -179,35 +216,53 @@ pip install pandas numpy scikit-learn matplotlib seaborn
    Run preProcessing.ipynb first to prepare the data
    ```
 
-2. **Unigram Classification**:
+2. **Model Training - Choose one approach**:
    ```
-   Run tf-idf.ipynb in Jupyter Notebook
-   ```
-
-3. **N-gram Classification**:
-   ```
-   Run tf-idf_n-gram.ipynb in Jupyter Notebook
+   Option A: Run tf-idf.ipynb (Naive Bayes only)
+   Option B: Run vectorization_and_model.ipynb (All models: NB, SVM, LR)
    ```
 
-### Loading Trained Models
+3. **Making Predictions on New Headlines**:
+   ```
+   Run predict_headline.ipynb to classify new Tamil news headlines
+   ```
+   - Loads all trained models automatically
+   - Supports single and batch predictions
+   - Shows model accuracies alongside predictions
+
+### Making Predictions on New Headlines
+
+**Method 1: Use the Prediction Notebook (Recommended)**
+
+```python
+# Open and run predict_headline.ipynb
+# Then use:
+predict_headline("உங்கள் தமிழ் செய்தி தலைப்பு")
+```
+
+**Method 2: Load Models Manually**
 
 ```python
 import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
 
-# Load model
+# Load category model (choose one)
 with open('models/category_naive_bayes.pkl', 'rb') as f:
-    model = pickle.load(f)
+    cat_model = pickle.load(f)
+# Or: category_svm.pkl, category_logistic.pkl
 
-# Load vectorizer
+# Load sentiment model (choose one)
+with open('models/sentiment_naive_bayes.pkl', 'rb') as f:
+    sent_model = pickle.load(f)
+# Or: sentiment_svm.pkl, sentiment_logistic.pkl
+
+# Load vectorizers
 with open('models/category_vectorizer.pkl', 'rb') as f:
-    vectorizer = pickle.load(f)
+    cat_vectorizer_data = pickle.load(f)
+with open('models/sentiment_vectorizer.pkl', 'rb') as f:
+    sent_vectorizer_data = pickle.load(f)
 
-# Predict on new Tamil text
-new_tamil_text = ["உங்கள் தமிழ் உரை இங்கே"]
-tfidf_matrix = vectorizer.transform(new_tamil_text)
-predictions = model.predict(tfidf_matrix)
+# Note: Vectorizers are dictionaries with vocabulary, word2idx, and idf_dict
+# You'll need to implement TF-IDF transformation (see predict_headline.ipynb)
 ```
 
 ## Model Architecture
@@ -283,36 +338,68 @@ Each notebook generates:
 
 ## Performance Results
 
-### Category Classification
+### Category Classification (All Models)
 
-| Approach | Features | Train Accuracy | Test Accuracy | Test F1-Score |
-|----------|----------|----------------|---------------|---------------|
-| Unigram TF-IDF | 10,000 unigrams | 0.85-0.87 | 0.82-0.84 | 0.82-0.83 |
-| N-gram TF-IDF | 10,000 n-grams | 0.88-0.90 | 0.85-0.87 | 0.85-0.86 |
+| Model | Features | Train Accuracy | Test Accuracy | Test F1-Score |
+|-------|----------|----------------|---------------|---------------|
+| **Naive Bayes** | 10,000 unigrams | 83.40% | **64.55%** | **0.6390** |
+| **Linear SVM** | 10,000 unigrams | 92.26% | **66.21%** | **0.6570** |
+| **Logistic Regression** | 10,000 unigrams | 92.78% | **65.20%** | **0.6512** |
 
-### Sentiment Classification
+**Best Model for Category**: Linear SVM (66.21% accuracy)
 
-| Approach | Features | Train Accuracy | Test Accuracy | Test F1-Score |
-|----------|----------|----------------|---------------|---------------|
-| Unigram TF-IDF | 10,000 unigrams | 0.80-0.82 | 0.76-0.78 | 0.76-0.77 |
-| N-gram TF-IDF | 10,000 n-grams | 0.83-0.85 | 0.79-0.81 | 0.79-0.80 |
+### Sentiment Classification (All Models)
 
-Note: Exact values depend on random_state seed and data splits.
+| Model | Features | Train Accuracy | Test Accuracy | Test F1-Score |
+|-------|----------|----------------|---------------|---------------|
+| **Naive Bayes** | 10,000 unigrams | 96.85% | **65.25%** | **0.6507** |
+| **Linear SVM** | 10,000 unigrams | 100.00% | **67.19%** | **0.6613** |
+| **Logistic Regression** | 10,000 unigrams | 99.70% | **68.40%** | **0.6571** |
 
-## N-gram vs Unigram
+**Best Model for Sentiment**: Logistic Regression (68.40% accuracy)
 
-### Unigram Advantages
-- Faster training and prediction
-- Fewer features (typically 8,000-10,000)
-- Simpler model interpretation
-- Lower memory requirements
+### Model Comparison Notes
 
-### N-gram Advantages
-- Captures word sequences and context
-- Better understanding of phrases (e.g., "இலங்கை அரசு")
-- More discriminative features
-- Improved classification accuracy (typically 2-4% improvement)
-- Better handling of multi-word concepts
+- **Linear SVM**: Best for category classification, strong generalization
+- **Logistic Regression**: Best for sentiment classification, excellent performance
+- **Naive Bayes**: Fast training, good baseline performance
+- All models use TF-IDF vectorization with 10,000 features
+- Train-test split: 80-20 with stratification
+- Dataset: Tamil news articles with preprocessing
+
+## Model Selection Guide
+
+### Which Model to Use?
+
+**For Category Classification:**
+- **Best Overall**: Linear SVM (66.21% accuracy, F1=0.6570)
+- **Fastest**: Naive Bayes (64.55% accuracy, F1=0.6390)
+- **Balanced**: Logistic Regression (65.20% accuracy, F1=0.6512)
+
+**For Sentiment Classification:**
+- **Best Overall**: Logistic Regression (68.40% accuracy, F1=0.6571)
+- **Runner-up**: Linear SVM (67.19% accuracy, F1=0.6613)
+- **Fastest**: Naive Bayes (65.25% accuracy, F1=0.6507)
+
+### Model Characteristics
+
+**Naive Bayes:**
+- ✅ Fastest training and prediction
+- ✅ Works well with small datasets
+- ✅ Probabilistic predictions
+- ⚠️ Assumes feature independence
+
+**Linear SVM:**
+- ✅ Excellent for high-dimensional data
+- ✅ Good generalization
+- ✅ Robust to overfitting
+- ⚠️ Slower than Naive Bayes
+
+**Logistic Regression:**
+- ✅ Balanced performance and speed
+- ✅ Interpretable coefficients
+- ✅ Probabilistic predictions
+- ✅ Works well with regularization
 
 ## Important Parameters
 
@@ -366,13 +453,17 @@ Approximate training times (on standard hardware):
 
 ## Future Improvements
 
-- Implement additional classifiers (SVM, Random Forest, Deep Learning)
+- ✅ **Implemented**: Multiple classifiers (Naive Bayes, SVM, Logistic Regression)
+- ✅ **Implemented**: Prediction system for new headlines
 - Add cross-validation for more robust evaluation
 - Implement hyperparameter tuning (GridSearchCV, RandomizedSearchCV)
+- Add N-gram models to prediction system
 - Support for multi-label classification
 - Real-time prediction API
 - Web interface for model interaction
+- Deep learning models (LSTM, BERT for Tamil)
 - Support for other languages
+- Model explainability (feature importance, LIME/SHAP)
 
 ## References
 
