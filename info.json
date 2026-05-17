@@ -1,0 +1,20 @@
+{
+  "name": "Tamil NLP Classification",
+  "description": "Built a comprehensive NLP text classification pipeline tailored specifically for the Tamil language.\nImplemented TF-IDF vectorization and trained Naive Bayes, SVM, and Logistic Regression models from scratch.\nDelivered robust news category prediction and sentiment analysis, successfully navigating low-resource language constraints.",
+  "github": "https://github.com/Black-and-Yellow/NLP_project",
+  "live": "",
+  "techStack": [
+    "Python",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "TF-IDF",
+    "NLP"
+  ],
+  "featured": true,
+  "thumbnail": "",
+  "status": "Completed",
+  "category": "ML Project",
+  "date": "2025",
+  "gradient": "from-indigo-500/20 to-blue-600/5"
+}
